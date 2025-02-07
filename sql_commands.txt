@@ -1,0 +1,86 @@
+create database employee;
+-- use the database 
+use employee;
+create table details(
+emp_id Int,
+emp_name Varchar(20),
+dob Varchar(20),
+date_of_joining varchar(20),
+created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+Salary Int,
+Bonus Int,
+city varchar(20),
+Address varchar(20),
+Department varchar(20),
+employee_email_id varchar(20),
+employee_status varchar(20));
+-- to display the details 
+select * from details;
+-- to enter the details  
+INSERT INTO details (emp_id, emp_name, dob, date_of_joining, Salary, Bonus, city, Address, Department, employee_email_id, employee_status)
+VALUES 
+(1, 'John', '1990-05-15', '2020-01-10', 60000, 5000, 'New York', '123 Main St', 'HR', 'john.doe@example.com', 'Active'),
+(2, 'Jane', '1985-08-22', '2018-03-20', 75000, 6000, 'Los Angeles', '456 Oak St', 'IT', 'jane.smith@example.com', 'Active'),
+(3, 'Samuel ', '1992-10-10', '2021-06-12', 54000, 4500, 'Chicago', '789 Pine St', 'Marketing', 'samuel.lee@example.com', 'Inactive'),
+(4, 'Rachel ', '1989-07-01', '2019-02-15', 65000, 5500, 'San Francisco', '101 Maple St', 'Finance', 'rachel.green@example.com', 'Active'),
+(5, 'David ', '1994-03-10', '2022-09-05', 58000, 4000, 'Houston', '202 Elm St', 'Sales', 'david.johnson@example.com', 'Active'),
+(6, 'Maria ', '1987-11-20', '2017-05-25', 72000, 7000, 'Seattle', '303 Cedar St', 'Operations', 'maria.davis@example.com', 'Active'),
+(7, 'James ', '1993-02-17', '2020-11-01', 60000, 4500, 'Austin', '404 Birch St', 'HR', 'james.wilson@example.com', 'Inactive'),
+(8, 'Lisa ', '1995-01-30', '2022-04-14', 54000, 3000, 'Miami', '505 Fir St', 'IT', 'lisa.taylor@example.com', 'Active'),
+(9, 'Chris ', '1988-12-05', '2016-07-18', 78000, 8000, 'Boston', '606 Pine St', 'Finance', 'chris.brown@example.com', 'Active'),
+(10, 'Olivia ', '1991-09-23', '2015-10-30', 70000, 6500, 'Denver', '707 Cedar St', 'Marketing', 'olivia.clark@example.com', 'Active');
+select * from details;
+-- Change column name
+ALTER TABLE details RENAME COLUMN emp_name TO employee_name;
+
+-- Add new column
+ALTER TABLE details ADD phone_number VARCHAR(15);
+
+-- View all records
+SELECT * FROM details;
+
+-- Update some records
+UPDATE details SET phone_number = '123-456-7890' WHERE emp_id = 1;
+UPDATE details SET phone_number = '987-654-3210' WHERE emp_id = 2;
+
+-- Drop column
+ALTER TABLE details DROP COLUMN phone_number;
+
+-- Delete record
+DELETE FROM details WHERE emp_id = 5;
+
+-- View records starting with "M"
+SELECT * FROM details WHERE employee_name LIKE 'M%';
+
+-- View salary greater than 7000
+SELECT * FROM details WHERE Salary > 7000;
+
+-- View records with city "Chennai"
+SELECT * FROM details WHERE city = 'Chennai';
+
+-- Logical operators example
+SELECT * FROM details WHERE Department = 'HR' AND Salary > 60000;
+SELECT * FROM details WHERE Department = 'IT' OR Bonus > 5000;
+
+-- Aggregate functions
+SELECT 
+    COUNT(*) AS total_employees,
+    SUM(Salary) AS total_salary,
+    AVG(Bonus) AS average_bonus,
+    MAX(Salary) AS highest_salary,
+    MIN(Salary) AS lowest_salary
+FROM details;
+
+-- Using BETWEEN
+SELECT * FROM details WHERE Salary BETWEEN 50000 AND 70000;
+
+-- Use WHERE clause
+SELECT * FROM details WHERE employee_status = 'Active';
+
+
+
+
+
+
+
+
